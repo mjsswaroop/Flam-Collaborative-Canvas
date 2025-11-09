@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collaborative Canvas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Name Modal -->
+  <div id="nameModal" class="modal">
+    <div class="modal-content">
+      <h2>🎨 Join Canvas</h2>
+      <input type="text" id="nameInput" placeholder="Enter your name" maxlength="20">
+      <button id="joinBtn">Start Drawing</button>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" style="display: none;">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <h1>🎨 Collaborative Canvas</h1>
+      </div>
+      <div class="header-right">
+        <span id="currentUser" class="badge"></span>
+        <span id="userCount" class="badge">👥 1</span>
+      </div>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="tool-group">
+        <button id="brush" class="tool-btn active">🖌️ Brush</button>
+        <button id="eraser" class="tool-btn">🧹 Eraser</button>
+      </div>
+      
+      <div class="tool-group">
+        <label>Color:</label>
+        <input type="color" id="color" value="#000000">
+      </div>
+      
+      <div class="tool-group">
+        <label>Size:</label>
+        <input type="range" id="size" min="1" max="50" value="3">
+        <span id="sizeLabel">3px</span>
+      </div>
+      
+      <div class="tool-group">
+        <button id="undo" class="tool-btn">↩️ Undo</button>
+        <button id="redo" class="tool-btn">↪️ Redo</button>
+        <button id="clear" class="tool-btn danger">🗑️ Clear</button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3>👥 Online Users</h3>
+        <div id="userList" class="user-list"></div>
+      </aside>
+
+      <!-- Canvas Area -->
+      <main class="canvas-area">
+        <div class="canvas-container">
+          <canvas id="canvas"></canvas>
+          <div id="cursors" class="cursors-layer"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Notifications -->
+  <div id="notifications" class="notifications"></div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="canvas.js"></script>
+  <script src="websocket.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
